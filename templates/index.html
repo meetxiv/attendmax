@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRN Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        form {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Your PRN</h1>
+    <form action="/submit_prn" method="POST">
+        <label for="prn">PRN (Alphanumeric):</label><br>
+        <input type="text" id="prn" name="prn" pattern="[a-zA-Z0-9]+" required><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
