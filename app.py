@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Path to the Excel file (adjust as necessary)
-EXCEL_FILE_PATH = 'prn_records.xlsx'
+EXCEL_FILE_PATH = os.path.join(os.getcwd(), 'prn_records.xlsx')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -30,6 +30,9 @@ def index():
             df.to_excel(EXCEL_FILE_PATH, index=False)
         except Exception as e:
             return f"Error saving data: {e}"
+
+        # Log the PRN in the terminal
+        print(f"New PRN added: {prn} at {current_time}")
 
         return "PRN submitted successfully!"
 
