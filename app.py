@@ -18,6 +18,7 @@ def index():
         try:
             df = pd.read_excel(EXCEL_FILE_PATH)
         except FileNotFoundError:
+            # If file doesn't exist, create a new DataFrame
             df = pd.DataFrame(columns=["PRN", "Timestamp"])
 
         # Add the new PRN and timestamp to the DataFrame
@@ -25,11 +26,15 @@ def index():
         df = pd.concat([df, new_entry], ignore_index=True)
 
         # Save the DataFrame back to the Excel file
-        df.to_excel(EXCEL_FILE_PATH, index=False)
+        try:
+            df.to_excel(EXCEL_FILE_PATH, index=False)
+        except Exception as e:
+            return f"Error saving data: {e}"
 
         return "PRN submitted successfully!"
 
     return render_template("index.html")
+
 
 # Run the app with dynamic port and host settings for cloud deployment
 if __name__ == '__main__':
